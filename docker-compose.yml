@@ -1,0 +1,13 @@
+version: '3'
+name: course
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgrescourse
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ead-course
+    ports:
+      - "5431:5431"
