@@ -26,6 +26,11 @@ public class Lesson implements Serializable {
     @Column(nullable = false)
     private String videoUrl;
     @Column(nullable = false)
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy HH:MM:ss")
     private LocalDateTime creationDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy HH:MM:ss")
+    @ManyToOne(optional = false)
+    private Module module;
 }
