@@ -51,5 +51,5 @@ public class Course implements Serializable {
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
     //@OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<Module> modules;
+    private Set<ModuleModel> modules;
 }

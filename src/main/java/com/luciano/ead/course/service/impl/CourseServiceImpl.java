@@ -2,7 +2,7 @@ package com.luciano.ead.course.service.impl;
 
 import com.luciano.ead.course.model.Course;
 import com.luciano.ead.course.model.Lesson;
-import com.luciano.ead.course.model.Module;
+import com.luciano.ead.course.model.ModuleModel;
 import com.luciano.ead.course.repository.CourseRepository;
 import com.luciano.ead.course.repository.LessonRepository;
 import com.luciano.ead.course.repository.ModuleRepository;
@@ -28,10 +28,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Transactional
     public void delete(Course course) {
-        List<Module> moduleList = moduleRepository.findAllModulesIntoCourse(course.getCourseId());
+        List<ModuleModel> moduleList = moduleRepository.findAllModulesIntoCourse(course.getCourseId());
 
         if (!moduleList.isEmpty()) {
-            for (Module module : moduleList) {
+            for (ModuleModel module : moduleList) {
                 List<Lesson> lessonList = lessonRepository.findAllLessonsIntoModule(module.getModuleId());
                 if (!lessonList.isEmpty()) {
                     lessonRepository.deleteAll(lessonList);

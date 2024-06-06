@@ -32,5 +32,5 @@ public class Lesson implements Serializable {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy HH:MM:ss")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Module module;
+    private ModuleModel module;
 }

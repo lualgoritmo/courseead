@@ -1,7 +1,6 @@
 package com.luciano.ead.course.repository;
 
 import com.luciano.ead.course.model.Lesson;
-import com.luciano.ead.course.model.Module;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
