@@ -56,7 +56,7 @@ public class ModuleController {
         return ResponseEntity.status(HttpStatus.OK).body(moduleService.findAllModulesIntoCourse(courseId));
     }
 
-    @PutMapping("courses/{courseId}/modules/{moduleId}")
+    @GetMapping("courses/{courseId}/modules/{moduleId}")
     public ResponseEntity<Object> getOneModule(
             @PathVariable(value = "courseId") UUID courseId,
             @PathVariable(value = "moduleId") UUID moduleId
