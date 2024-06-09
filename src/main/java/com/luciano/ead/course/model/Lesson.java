@@ -30,7 +30,6 @@ public class Lesson implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy HH:MM:ss")
     private LocalDateTime creationDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy HH:MM:ss")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ModuleModel module;
 }

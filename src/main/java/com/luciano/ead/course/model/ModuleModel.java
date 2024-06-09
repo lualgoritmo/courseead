@@ -35,8 +35,7 @@ public class ModuleModel implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Course course;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy HH:MM:ss")
+    
     @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
     private Set<Lesson> lessons;
