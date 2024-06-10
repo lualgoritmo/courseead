@@ -1,6 +1,10 @@
 package com.luciano.ead.course.service;
 
 import com.luciano.ead.course.model.Course;
+import com.luciano.ead.course.specification.SpecificationTemplate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +18,6 @@ public interface CourseService {
     Optional<Course> findById(UUID courseId);
 
     List<Course> findAll();
+
+    Page<Course> findAll(Specification<Course> spec, Pageable pageAble);
 }

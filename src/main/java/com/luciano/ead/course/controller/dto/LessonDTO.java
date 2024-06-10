@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 public class LessonDTO {
 
-    private UUID lessonId;
+    //private UUID lessonId;
     @NotBlank
     private String title;
 
@@ -20,7 +20,7 @@ public class LessonDTO {
 
     public Lesson toEntity() {
         Lesson lesson = new Lesson();
-        lesson.setLessonId(this.lessonId);
+        //lesson.setLessonId(this.lessonId);
         lesson.setTitle(this.title);
         lesson.setDescription(this.description);
         lesson.setVideoUrl(this.videoUrl);
@@ -30,7 +30,7 @@ public class LessonDTO {
 
     public static LessonDTO fromEntity(Lesson lesson) {
         LessonDTO lessonDTO = new LessonDTO();
-        lessonDTO.setLessonId(lesson.getLessonId());
+        //lessonDTO.setLessonId(lesson.getLessonId());
         lessonDTO.setTitle(lesson.getTitle());
         lessonDTO.setDescription(lesson.getDescription());
         lessonDTO.setVideoUrl(lesson.getVideoUrl());

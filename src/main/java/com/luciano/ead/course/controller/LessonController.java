@@ -48,7 +48,7 @@ public class LessonController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
-//    @PostMapping("modules/{moduleId}/lessons")
+    //    @PostMapping("modules/{moduleId}/lessons")
 //    public ResponseEntity<Object> saveLesson(
 //            @PathVariable(value = "moduleId") UUID moduleId,
 //            @RequestBody @Valid LessonDTO lessonDTO) {
@@ -69,8 +69,19 @@ public class LessonController {
 //        return ResponseEntity.status(HttpStatus.CREATED).body(lessonService.save(lesson));
 //
 //    }
+//    @GetMapping("modules/{moduleId}/lessons")
+//    public ResponseEntity<List<LessonDTO>> getAllLessons(@PathVariable(value = "moduleId") UUID moduleId) {
+//        List<Lesson> lessons = lessonService.findByAllLessons(moduleId);
+//
+//        List<LessonDTO> lessonDTOs = lessons.stream()
+//                .map(LessonDTO::fromEntity)
+//                .collect(Collectors.toList());
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(lessonDTOs);
+//    }
     @GetMapping("modules/{moduleId}/lessons")
-    public ResponseEntity<List<LessonDTO>> getAllLessons(@PathVariable(value = "moduleId") UUID moduleId) {
+    public ResponseEntity<Object> getAllLessonsPage(
+            @PathVariable(value = "moduleId") UUID moduleId) {
         List<Lesson> lessons = lessonService.findByAllLessons(moduleId);
 
         List<LessonDTO> lessonDTOs = lessons.stream()
@@ -79,6 +90,7 @@ public class LessonController {
 
         return ResponseEntity.status(HttpStatus.OK).body(lessonDTOs);
     }
+
     @GetMapping("modules/{moduleId}/lessons/{lessonId}")
     public ResponseEntity<Object> getOneLesson(
             @PathVariable(value = "moduleId") UUID moduleId,
