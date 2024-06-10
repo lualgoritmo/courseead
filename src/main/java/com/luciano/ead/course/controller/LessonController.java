@@ -111,7 +111,7 @@ public class LessonController {
         lesson.setDescription(lessonDTO.getDescription());
         lesson.setVideoUrl(lessonDTO.getVideoUrl());
 
-        return ResponseEntity.status(HttpStatus.OK).body(lessonService.save(lesson));
+        return ResponseEntity.status(HttpStatus.OK).body(LessonDTO.fromEntity(lessonService.save(lesson)));
     }
 
     @DeleteMapping("modules/{moduleId}/lessons/{lessonId}")
