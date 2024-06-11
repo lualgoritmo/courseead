@@ -5,8 +5,13 @@ import com.luciano.ead.course.model.Lesson;
 import com.luciano.ead.course.model.ModuleModel;
 import com.luciano.ead.course.service.LessonService;
 import com.luciano.ead.course.service.ModuleService;
+import com.luciano.ead.course.specification.SpecificationTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -79,18 +84,47 @@ public class LessonController {
 //
 //        return ResponseEntity.status(HttpStatus.OK).body(lessonDTOs);
 //    }
+//    @GetMapping("modules/{moduleId}/lessons")
+//    public ResponseEntity<Object> getAllLessonsPage(
+//            @PathVariable(value = "moduleId") UUID moduleId) {
+//        List<Lesson> lessons = lessonService.findByAllLessons(moduleId);
+//
+//        List<LessonDTO> lessonDTOs = lessons.stream()
+//                .map(LessonDTO::fromEntity)
+//                .collect(Collectors.toList());
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(lessonDTOs);
+//    }
+
+//    @GetMapping("modules/{moduleId}/lessons")
+//    public ResponseEntity<Page<LessonDTO>> getAllLessonsPage(
+//            @PathVariable(value = "moduleId") UUID moduleId,
+//            SpecificationTemplate.LessonSpec spec,
+//            @PageableDefault(
+//                    page = 0,
+//                    size = 10,
+//                    sort = "lessonId",
+//                    direction = Sort.Direction.ASC
+//            ) Pageable pageable) {
+//        Page<Lesson> lessons = lessonService.findByAllLessons(SpecificationTemplate.lessonModuleId(moduleId).and(spec), pageable);
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(lessons.map(LessonDTO::fromEntity));
+//    }
+
     @GetMapping("modules/{moduleId}/lessons")
-    public ResponseEntity<Object> getAllLessonsPage(
-            @PathVariable(value = "moduleId") UUID moduleId) {
-        List<Lesson> lessons = lessonService.findByAllLessons(moduleId);
+    public ResponseEntity<Page<Lesson>> getAllLessonsPage(
+            @PathVariable(value = "moduleId") UUID moduleId,
+            SpecificationTemplate.LessonSpec spec,
+            @PageableDefault(
+                    page = 0,
+                    size = 10,
+                    sort = "lessonId",
+                    direction = Sort.Direction.ASC
+            ) Pageable pageable) {
+        Page<Lesson> lessons = lessonService.findByAllLessons(SpecificationTemplate.lessonModuleId(moduleId).and(spec), pageable);
 
-        List<LessonDTO> lessonDTOs = lessons.stream()
-                .map(LessonDTO::fromEntity)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.status(HttpStatus.OK).body(lessonDTOs);
+        return ResponseEntity.status(HttpStatus.OK).body(lessons);
     }
-
     @GetMapping("modules/{moduleId}/lessons/{lessonId}")
     public ResponseEntity<Object> getOneLesson(
             @PathVariable(value = "moduleId") UUID moduleId,

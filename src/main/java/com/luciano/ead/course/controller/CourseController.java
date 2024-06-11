@@ -45,8 +45,8 @@ public class CourseController {
                     size = 10,
                     sort = "courseId",
                     direction = Sort.Direction.ASC
-            ) Pageable pageAble) {
-        return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageAble));
+            ) Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));
     }
 
     @GetMapping("/{courseId}")

@@ -55,8 +55,8 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public Page<ModuleModel> findAllModulesIntoCourse(Specification<ModuleModel> spec, Pageable pageAble) {
-        return moduleRepository.findAll(spec, pageAble);
+    public Page<ModuleModel> findAllModulesIntoCourse(Specification<ModuleModel> spec, Pageable pageable) {
+        return moduleRepository.findAll(spec, pageable);
     }
 
 }

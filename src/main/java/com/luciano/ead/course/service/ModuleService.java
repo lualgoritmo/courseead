@@ -20,5 +20,5 @@ public interface ModuleService {
 
     Optional<ModuleModel> findById(UUID moduleId);
 
-    Page<ModuleModel> findAllModulesIntoCourse(Specification<ModuleModel> spec, Pageable pageAble);
+    Page<ModuleModel> findAllModulesIntoCourse(Specification<ModuleModel> spec, Pageable pageable);
 }

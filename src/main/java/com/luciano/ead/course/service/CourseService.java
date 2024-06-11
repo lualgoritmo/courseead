@@ -19,5 +19,5 @@ public interface CourseService {
 
     List<Course> findAll();
 
-    Page<Course> findAll(Specification<Course> spec, Pageable pageAble);
+    Page<Course> findAll(Specification<Course> spec, Pageable pageable);
 }

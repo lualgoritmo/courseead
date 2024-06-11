@@ -42,4 +42,16 @@ public class SpecificationTemplate {
                     cb.isMember(module, coursesModules));
         };
     }
+
+    public static Specification<Lesson> lessonModuleId(final UUID moduleId) {
+        return (root, query, cb) -> {
+            query.distinct(true);
+            Root<Lesson> lesson = root;
+            Root<ModuleModel> module = query.from(ModuleModel.class);
+            Expression<Collection<Lesson>> moduleLessons = module.get("lessons");
+
+            return cb.and(cb.equal(module.get("moduleId"), moduleId),
+                    cb.isMember(lesson, moduleLessons));
+        };
+    }
 }

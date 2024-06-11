@@ -4,6 +4,9 @@ import com.luciano.ead.course.model.Lesson;
 import com.luciano.ead.course.repository.LessonRepository;
 import com.luciano.ead.course.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +19,14 @@ public class LessonServiceImpl implements LessonService {
     private LessonRepository lessonRepository;
 
     @Override
-    public Lesson save(Lesson lesson) { return lessonRepository.save(lesson); }
+    public Lesson save(Lesson lesson) {
+        return lessonRepository.save(lesson);
+    }
 
     @Override
-    public void delete(Lesson lesson) { lessonRepository.delete(lesson);}
+    public void delete(Lesson lesson) {
+        lessonRepository.delete(lesson);
+    }
 
     @Override
     public Optional<Lesson> findLessonIntoModule(UUID moduleId, UUID lessonId) {
@@ -29,5 +36,10 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public List<Lesson> findByAllLessons(UUID moduleId) {
         return lessonRepository.findAllLessonsIntoModule(moduleId);
+    }
+
+    @Override
+    public Page<Lesson> findByAllLessons(Specification<Lesson> spec, Pageable pageable) {
+        return lessonRepository.findAll(spec, pageable);
     }
 }

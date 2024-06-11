@@ -1,6 +1,7 @@
 package com.luciano.ead.course.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -30,6 +31,7 @@ public class Lesson implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yy HH:MM:ss")
     private LocalDateTime creationDate;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ModuleModel module;
 }

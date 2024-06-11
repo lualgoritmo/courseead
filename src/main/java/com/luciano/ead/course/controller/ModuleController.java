@@ -29,10 +29,8 @@ import java.util.UUID;
 public class ModuleController {
     @Autowired
     private ModuleService moduleService;
-
     @Autowired
     private CourseService courseService;
-
     @Autowired
     private LessonService lessonService;
 
@@ -65,13 +63,15 @@ public class ModuleController {
     public ResponseEntity<Page<ModuleModel>> getAllModules(
             @PathVariable(value = "courseId") UUID courseId,
             SpecificationTemplate.ModuleSpec spec,
-            @PageableDefault(page = 0,
+            @PageableDefault(
+                    page = 0,
                     size = 10,
                     sort = "moduleId",
                     direction = Sort.Direction.ASC
-            ) Pageable pageAble) {
+            ) Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(moduleService.findAllModulesIntoCourse(SpecificationTemplate.moduleCourseId(courseId).and(spec), pageAble));
+                .body(moduleService.findAllModulesIntoCourse(
+                        SpecificationTemplate.moduleCourseId(courseId).and(spec), pageable));
     }
 
     @GetMapping("courses/{courseId}/modules/{moduleId}")
