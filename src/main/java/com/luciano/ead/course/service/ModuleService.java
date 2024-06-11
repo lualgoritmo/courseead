@@ -1,6 +1,9 @@
 package com.luciano.ead.course.service;
 
 import com.luciano.ead.course.model.ModuleModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +19,6 @@ public interface ModuleService {
     List<ModuleModel> findAllModulesIntoCourse(UUID courseId);
 
     Optional<ModuleModel> findById(UUID moduleId);
+
+    Page<ModuleModel> findAllModulesIntoCourse(Specification<ModuleModel> spec, Pageable pageAble);
 }
