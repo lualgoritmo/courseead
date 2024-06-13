@@ -6,8 +6,8 @@ services:
     container_name: postgrescourse
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=ead-course
+      - POSTGRES_USER= postgres
+      - POSTGRES_PASSWORD= postgres
+      - POSTGRES_DB= ead-course
     ports:
       - "5432:5432"

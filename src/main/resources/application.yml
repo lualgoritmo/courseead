@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: course
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ead-course
+    username: postgres
+    password: postgres
+
+  output:
+   ansi:
+     enabled: Always
