@@ -55,5 +55,5 @@ public class Course implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-    private Set<CourseUser> course;
+    private Set<CourseUser> coursesUsers;
 }

@@ -121,7 +121,8 @@ public class LessonController {
                     sort = "lessonId",
                     direction = Sort.Direction.ASC
             ) Pageable pageable) {
-        Page<Lesson> lessons = lessonService.findByAllLessons(SpecificationTemplate.lessonModuleId(moduleId).and(spec), pageable);
+        Page<Lesson> lessons = lessonService.findByAllLessons(SpecificationTemplate
+                .lessonModuleId(moduleId).and(spec), pageable);
 
         return ResponseEntity.status(HttpStatus.OK).body(lessons);
     }
