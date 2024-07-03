@@ -37,7 +37,6 @@ public class CourseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(courseService.save(course));
 
     }
-
     @GetMapping
     public ResponseEntity<Page<Course>> getAllcourses(
             SpecificationTemplate.CourseSpec spec,
@@ -55,7 +54,6 @@ public class CourseController {
             return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));
         }
     }
-
     @GetMapping("/{courseId}")
     public ResponseEntity<Object> getOneCourse(@PathVariable(value = "courseId") UUID courseId) {
         Optional<Course> optionalCourse = courseService.findById(courseId);
