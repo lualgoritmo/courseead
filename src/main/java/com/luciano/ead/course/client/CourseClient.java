@@ -1,11 +1,11 @@
 package com.luciano.ead.course.client;
 
-import com.luciano.ead.course.controller.dto.CourseDTO;
 import com.luciano.ead.course.controller.dto.ResponsePageDTO;
 import com.luciano.ead.course.controller.dto.UserDTO;
 import com.luciano.ead.course.service.UtilsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.UUID;
+
 @Log4j2
 @Component
 public class CourseClient {
@@ -25,9 +26,13 @@ public class CourseClient {
     RestTemplate restTemplate;
     @Autowired
     UtilsService utilsService;
+
+    @Value("${ead.api.url.authuser}")
+    String REQUEST_URL_AUTHUSER;
+
     public Page<UserDTO> getAllUsersByCourse(UUID courseId, Pageable pageable) {
         List<UserDTO> searchResult = null;
-        String url = utilsService.createUrl(courseId, pageable);
+        String url = REQUEST_URL_AUTHUSER + utilsService.createUrlgetAllUsersByCourse(courseId, pageable);
 
         log.debug("REQUEST URL: {} ", url);
         log.info("REQUEST URL: {} ", url);

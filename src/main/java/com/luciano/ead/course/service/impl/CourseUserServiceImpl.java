@@ -1,5 +1,7 @@
 package com.luciano.ead.course.service.impl;
 
+import com.luciano.ead.course.model.Course;
+import com.luciano.ead.course.model.CourseUser;
 import com.luciano.ead.course.repository.CourseUserRepository;
 import com.luciano.ead.course.service.CourseUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,19 @@ public class CourseUserServiceImpl implements CourseUserService {
     @Autowired
     private CourseUserRepository courseUserRepository;
 
-    String REQUEST_URI = "http://localhost:8087/";
     public String createUrl(UUID userId, Pageable pageable) {
-        return REQUEST_URI + "/courses?userId=" + userId + "&page=" +
+        return "/courses?userId=" + userId + "&page=" +
                 pageable.getPageNumber() + "&size=" + pageable.getPageSize() +
                 "&sort=" + pageable.getSort().toString().replaceAll(":", ",");
+    }
+
+    @Override
+    public boolean existsByCourseAndUserId(Course courseId, UUID userId) {
+        return courseUserRepository.existsByCourseAndUserId(courseId, userId);
+    }
+
+    @Override
+    public CourseUser save(CourseUser courseUser) {
+        return courseUserRepository.save(courseUser);
     }
 }
